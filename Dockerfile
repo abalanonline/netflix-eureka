@@ -14,16 +14,12 @@
 
 FROM tomcat:alpine
 
-# change Tomcat default port to Eureka default
-RUN sed -i 's/8080/8761/g' conf/server.xml
+# change Tomcat default port to Eureka default, download and unpack
+RUN sed -i 's/8080/8761/g' conf/server.xml &&\
+  wget http://repo1.maven.org/maven2/com/netflix/eureka/eureka-server/1.8.4/eureka-server-1.8.4.war\
+    -q -O webapps/eureka.war &&\
+  mkdir -p webapps/eureka &&\
+  unzip -q webapps/eureka.war -d webapps/eureka &&\
+  rm webapps/eureka.war
 
-# download Eureka
-RUN wget http://repo1.maven.org/maven2/com/netflix/eureka/eureka-server/1.8.4/eureka-server-1.8.4.war\
-  -q -O webapps/eureka.war
-
-RUN mkdir webapps/eureka
-
-RUN unzip -q webapps/eureka.war -d webapps/eureka
-
-RUN rm webapps/eureka.war
-
+COPY *.properties webapps/eureka/WEB-INF/classes/
