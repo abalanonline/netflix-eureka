@@ -14,5 +14,7 @@
 
 FROM tomcat:alpine
 
+# change Tomcat default port to Eureka default
+RUN sed -i 's/8080/8761/g' conf/server.xml
 
 
