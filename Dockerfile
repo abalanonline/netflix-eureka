@@ -23,3 +23,7 @@ RUN sed -i 's/8080/8761/g' conf/server.xml &&\
   rm webapps/eureka.war
 
 COPY *.properties webapps/eureka/WEB-INF/classes/
+
+EXPOSE 8761
+
+# Have fun
