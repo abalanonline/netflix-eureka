@@ -19,5 +19,11 @@ RUN sed -i 's/8080/8761/g' conf/server.xml
 
 # download Eureka
 RUN wget http://repo1.maven.org/maven2/com/netflix/eureka/eureka-server/1.8.4/eureka-server-1.8.4.war\
-  -O webapps/eureka.war
+  -q -O webapps/eureka.war
+
+RUN mkdir webapps/eureka
+
+RUN unzip -q webapps/eureka.war -d webapps/eureka
+
+RUN rm webapps/eureka.war
 
