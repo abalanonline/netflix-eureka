@@ -17,4 +17,7 @@ FROM tomcat:alpine
 # change Tomcat default port to Eureka default
 RUN sed -i 's/8080/8761/g' conf/server.xml
 
+# download Eureka
+RUN wget http://search.maven.org/remotecontent?filepath=com/netflix/eureka/eureka-server/1.8.4/eureka-server-1.8.4.war\
+  -O webapps/eureka.war
 
