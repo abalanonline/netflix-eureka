@@ -24,6 +24,8 @@ RUN sed -i 's/8080/8761/g' conf/server.xml &&\
 
 COPY *.properties webapps/eureka/WEB-INF/classes/
 
+COPY eureka-logo-150.png webapps/ROOT/favicon.ico
+
 EXPOSE 8761
 
 # Have fun
